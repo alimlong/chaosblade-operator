@@ -16,7 +16,6 @@ jobs:
     strategy:
       matrix:
         # arch: [ amd64, arm64 ]
-        arch: [ arm64 ]
         image:
           [ chaosblade-operator ]
     outputs:
@@ -44,8 +43,9 @@ jobs:
 
       - name: Build Image
         run: |
-          make docker-build-arm64
-        #  make docker-build
+          make docker-build
+        #  make docker-build-arm64
+          
 
 
       # - name: Upload Image
