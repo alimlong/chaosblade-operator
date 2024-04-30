@@ -21,7 +21,7 @@ jobs:
           [ chaosblade-operator ]
     outputs:
       image_tag: ${{ steps.image_tag.outputs.image_tag }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04-arm64
     steps:
       - name: Extract Image Tag
         id: image_tag
@@ -38,10 +38,12 @@ jobs:
           go-version: 1.17
         id: go
 
+
       - name: Build Image
         run: |
           make docker-build-arm64
         #  make docker-build
+
 
       # - name: Upload Image
       #   run: |
