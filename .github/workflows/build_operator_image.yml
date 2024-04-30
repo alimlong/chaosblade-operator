@@ -30,6 +30,9 @@ jobs:
           IMAGE_TAG=${GITHUB_REF##*/}
           echo "::set-output name=image_tag::$(echo $IMAGE_TAG)"
 
+      - name: echo arch
+        run: echo arch = $(arch)
+
       - uses: actions/checkout@v2
 
       - name: Set Up Go 1.17
