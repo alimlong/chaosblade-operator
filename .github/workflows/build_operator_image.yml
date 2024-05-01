@@ -43,8 +43,8 @@ jobs:
 
       - name: Build Image
         run: |
-          make docker-build
-        #  make docker-build-arm64
+          make docker-build-arm64
+        #  make docker-build
           
 
 
