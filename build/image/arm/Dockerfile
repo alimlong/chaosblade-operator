@@ -3,7 +3,7 @@ FROM multiarch/alpine:arm64-edge as builder
 ENV OPERATOR=/usr/local/bin/chaosblade-operator
 COPY build/_output/bin/chaosblade-operator /usr/local/bin/
 
-FROM --platform=${TARGETPLATFORM} registry.access.redhat.com/ubi8/ubi-minimal:latest
+FROM --platform=linux/amd64 registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 ENV OPERATOR=/usr/local/bin/chaosblade-operator \
     CHAOSBLADE_HOME=/opt/chaosblade
