@@ -54,7 +54,7 @@ build_image:
 	operator-sdk build --go-build-args="$(GO_FLAGS)" ghcr.io/chaosblade-io/chaosblade-operator:${BLADE_VERSION}
 
 build_image_arm64:
-	GOOS="linux" GOARCH="arm64" operator-sdk build --go-build-args="$(GO_FLAGS)" ghcr.io/chaosblade-io/chaosblade-operator-arm64:${BLADE_VERSION}
+	GOOS="linux" GOARCH="arm64" operator-sdk build --go-build-args="$(GO_FLAGS)" ghcr.io/alimlong/chaosblade-operator-arm64:${BLADE_VERSION}
 
 # only build_fuse and yaml
 build_linux:
