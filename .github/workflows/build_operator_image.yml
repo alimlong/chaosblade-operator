@@ -33,6 +33,8 @@ jobs:
         run: echo arch = $(arch)
 
       - uses: actions/checkout@v2
+        with:
+          ref: 'v1.7.3'
 
       - name: Set Up Go 1.17
         uses: actions/setup-go@v3
@@ -48,16 +50,29 @@ jobs:
           make docker-build-arm64
         #  make docker-build
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Log in to the Container registry
+      #  uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+      #  with:
+      #    registry: ${{ env.REGISTRY }}
+      #    username: ${{ github.actor }}
+      #    password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Save Image to file
         run: |
           docker save -o chaosblade-operator-arm64.tar ghcr.io/chaosblade-io/chaosblade-operator-arm64:1.7.3
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this release:
+            - Bug fixes
+            - New features
 
       - name: Upload Release Asset
         id: upload-release-asset 
