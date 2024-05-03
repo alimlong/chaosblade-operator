@@ -59,6 +59,7 @@ jobs:
 
       - name: Save Image to file
         run: |
+          docker images ls
           docker save -o chaosblade-operator-arm64.tar ghcr.io/chaosblade-io/chaosblade-operator-arm64:1.7.3
 
       - name: Create Release
